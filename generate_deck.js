@@ -74,9 +74,15 @@ const THEMES = {
 
 const theme = process.argv[2] === "light" ? "light" : "dark";
 const C = THEMES[theme];
-const LOGO = path.resolve(__dirname, theme === "light" ? "Tutelum_Logo_Light.png" : "Tutelum_Logo.png");
+const LOGO = path.resolve(
+  __dirname,
+  theme === "light" ? "Tutelum_Logo_Light.png" : "Tutelum_Logo.png",
+);
+const UI_OVERVIEW = path.resolve(__dirname, "UI_Mockup_Overview.png");
+const UI_AGENTS = path.resolve(__dirname, "UI_Mockup_Agents.png");
+const UI_POLICIES = path.resolve(__dirname, "UI_Mockup_Policies.png");
 const outFile = path.resolve(__dirname, `tutelum_pitch_deck_${theme}.pptx`);
-const TOTAL = 12;
+const TOTAL = 13;
 const W = 10,
   H = 5.625;
 
@@ -863,12 +869,38 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 6 · MARKET SIZE  (moved before Competition — size before proof)
+// SLIDE 6 · PRODUCT IN ACTION — OVERVIEW
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
   sl.background = { color: C.bg };
   slideNum(sl, 6);
+
+  sl.addText("PRODUCT IN ACTION - UI MOCKUP", {
+    x: 0.45,
+    y: 0.18,
+    w: 6,
+    h: 0.25,
+    fontSize: 9,
+    bold: true,
+    color: C.accent,
+    fontFace: "Inter",
+    charSpacing: 2,
+  });
+
+  if (fs.existsSync(UI_OVERVIEW)) {
+    // Overview mockup is ~800×630px (1.27:1). Scale to fit height 4.8" → width ≈ 6.1"
+    sl.addImage({ path: UI_OVERVIEW, x: 1.97, y: 0.52, w: 6.06, h: 4.77 });
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SLIDE 7 · MARKET SIZE  (moved before Competition — size before proof)
+// ══════════════════════════════════════════════════════════════════════════════
+{
+  const sl = pres.addSlide();
+  sl.background = { color: C.bg };
+  slideNum(sl, 7);
 
   sl.addText("A $236B Market With No Governance Layer", {
     x: 0.5,
@@ -1082,12 +1114,12 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 7 · COMPETITION  (capability matrix + honest ⚠️ + legend)
+// SLIDE 8 · COMPETITION  (capability matrix + honest ⚠️ + legend)
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
   sl.background = { color: C.bg };
-  slideNum(sl, 7);
+  slideNum(sl, 8);
 
   sl.addText("Every Alternative Enables Spending. None Enforce Governance.", {
     x: 0.2,
@@ -1289,12 +1321,12 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 8 · TRACTION  (moved after Competition; 4th card strengthened)
+// SLIDE 9 · TRACTION  (moved after Competition; 4th card strengthened)
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
   sl.background = { color: C.bg };
-  slideNum(sl, 8);
+  slideNum(sl, 9);
 
   sl.addText("Momentum Before Revenue", {
     x: 0.5,
@@ -1435,12 +1467,12 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 9 · BUSINESS MODEL  (moved after Traction; NRR expansion added)
+// SLIDE 10 · BUSINESS MODEL  (moved after Traction; NRR expansion added)
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
   sl.background = { color: C.bg };
-  slideNum(sl, 9);
+  slideNum(sl, 10);
 
   sl.addText("Usage-Based SaaS + Platform Fees", {
     x: 0.5,
@@ -1628,12 +1660,12 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 10 · GO-TO-MARKET  (initial distribution + activation timeline added)
+// SLIDE 11 · GO-TO-MARKET  (initial distribution + activation timeline added)
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
   sl.background = { color: C.bg };
-  slideNum(sl, 10);
+  slideNum(sl, 11);
 
   sl.addText("Three-Motion GTM Strategy", {
     x: 0.5,
@@ -1773,12 +1805,12 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 11 · TEAM  (founder-market fit sentences + updated backstory + LinkedIn)
+// SLIDE 12 · TEAM  (founder-market fit sentences + updated backstory + LinkedIn)
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
   sl.background = { color: C.bg };
-  slideNum(sl, 11);
+  slideNum(sl, 12);
 
   sl.addText("Built by Engineers Who've Lived the Problem", {
     x: 0.5,
@@ -1978,7 +2010,7 @@ pres.title = "Tutelum Pre-Seed Pitch Deck";
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// SLIDE 12 · THE ASK  (specific $150K target; milestone-to-seed framing)
+// SLIDE 13 · THE ASK  (specific $150K target; milestone-to-seed framing)
 // ══════════════════════════════════════════════════════════════════════════════
 {
   const sl = pres.addSlide();
